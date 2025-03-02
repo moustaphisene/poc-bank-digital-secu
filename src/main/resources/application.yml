@@ -1,0 +1,45 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/digitalbank
+    username: postgres
+    password: passer
+    driver-class-name: org.postgresql.Driver
+
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            client-id: bank-digital
+            client-secret: ecpex74Bv6sEm1ebiF3pcc6z7wLoBZl9
+            authorization-grant-type: authorization_code
+            scope: openid, profile, email
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8080/realms/umoa-realm
+            jwk-set-uri: http://localhost:8080/realms/umoa-realm/protocol/openid-connect/certs
+
+  cloud:
+    vault:
+      uri: 127.0.0.1:8200
+      token: root
+      kv:
+        enabled: true
+        backend: secret
+        default-context: application
+      scheme: http
+
+  logging:
+    level:
+      root: INFO
+      org.springframework.boot: DEBUG
+      org.springframework.context: DEBUG
+      com.ebank.bankdigital.config: DEBUG
+      org.springframework.cloud.vault: DEBUG
+      org.springframework.vault: DEBUG
+
+vault:
+  secret:
+    partner1:
+      client_id: ${vault.secret.data.partners.partner1.client_id}
+      client_secret: ${vault.secret.data.partners.partner1.client_secret}

@@ -1,2 +1,13 @@
-package com.ebank.bankdigital.repository;public interface CustomerRepository {
+package com.ebank.bankdigital.repository;
+
+import com.ebank.bankdigital.entity.Customer;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+
+@Repository
+public interface CustomerRepository extends JpaRepository<Customer, Long> {
+
+
+    Customer findByEmail(String email);
 }

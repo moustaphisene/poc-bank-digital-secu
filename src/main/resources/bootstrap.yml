@@ -1,0 +1,15 @@
+spring:
+  cloud:
+    vault:
+      # Adresse de l'instance Vault
+      uri: 127.0.0.1:8200
+
+      # Token pour s'authentifier auprès de Vault
+      token: root
+      scheme: http
+
+      # Configuration pour activer le backend KV (Key-Value) de Vault
+      kv:
+        enabled: true # Activer le backend KV
+        backend: secret # Nom du backend KV (par défaut, "secret")
+
